@@ -1,0 +1,43 @@
+.input
+  display: flex
+  flex-direction: column
+
+  &__legend
+    margin-bottom: 8px
+    font-family: 'Roboto', sans-serif
+    font-style: normal
+    font-weight: 300
+    font-size: 16px
+    line-height: 19px
+    color: #424242
+
+  &__input
+    background: #FFF
+    border: 1px solid #C9CACC
+    border-radius: 4px
+    padding: 16px 16px 16px 32px
+    font-weight: 300
+    font-size: 16px
+    line-height: 18px
+
+  &__error-message
+    margin-top: 8px
+    font-family: 'Roboto', sans-serif
+    font-style: normal
+    font-weight: 300
+    font-size: 12px
+    line-height: 14px
+    color: #EB1717
+
+.input--error
+  .input__legend
+    color: #EB1717
+
+  .input__input
+    border: 1px solid #EB1717
+    color: #EB1717
+
+  .input__input:focus
+    border: 1px solid #EB1717
+    outline: #EB1717
+
