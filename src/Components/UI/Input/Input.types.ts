@@ -2,7 +2,7 @@ import React from "react";
 
 export type propsTypeInput = {
     legend: string,
-    type: 'text' | 'email' | 'password',
+    type: 'text' | 'email' | 'password' | 'number' | 'date',
     value: string,
     isValid?: boolean,
     isDirty: boolean,

@@ -44,7 +44,7 @@ const Input = (props: propsTypeInput) => {
                 onBlur={onBlurHandler}
                 autoComplete="off"
             />
-            {(isError && !isPassword) && <span className="input__error-message">{errorMessage || 'Некорректные данные'}</span>}
+            {(isError && !isPassword) && <span className="input__error-message">{errorMessage || 'Заполните поле'}</span>}
             {(isError && isPassword) && <span className="input__error-message">Минимальная длинна пароля 8 символов, сейчас {value.length}</span>}
         </label>
     )
