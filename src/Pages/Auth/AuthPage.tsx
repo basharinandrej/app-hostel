@@ -3,7 +3,7 @@ import {loginRegExp} from "Components/UI/Input/Input.functions";
 import Form from "Components/Form/Form";
 import Input from "Components/UI/Input/Input";
 import Button from "Components/UI/Button/Button";
-import './Auth.sass'
+import './AuthPage.sass'
 
 const AuthPage = () => {
     const [valueInputLogin, setValueInputLogin] = React.useState('')

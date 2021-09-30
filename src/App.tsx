@@ -1,11 +1,11 @@
 import React from 'react';
 import {Switch, Route, Redirect} from "react-router-dom";
-import AuthPage from "Pages/Auth/Auth";
+import AuthPage from "Pages/Auth/AuthPage";
 import MainPage from "Pages/Main/MainPage";
 
 
 const App = () => {
-    const isAuth = false
+    const isAuth = true
 
     return (
         <Switch>
