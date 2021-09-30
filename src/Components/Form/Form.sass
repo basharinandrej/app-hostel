@@ -16,11 +16,25 @@
     text-align: center
 
   &__auth
-    max-width: 409px
+    width: 409px
     margin: 0 auto
+    position: relative
+    z-index: 1
 
   &__input
     margin-bottom: 24px
 
   &__input--gap
     margin-bottom: 32px
+
+
+@media (max-width: 576px)
+  .main-form
+    border-radius: 0
+    padding: 32px 12px
+
+    &__auth
+      width: calc(100vw - 12px)
+
+    &__title
+      margin-bottom: 12px

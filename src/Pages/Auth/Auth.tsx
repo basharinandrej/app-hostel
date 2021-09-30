@@ -3,6 +3,7 @@ import {loginRegExp} from "Components/UI/Input/Input.functions";
 import Form from "Components/Form/Form";
 import Input from "Components/UI/Input/Input";
 import Button from "Components/UI/Button/Button";
+import './Auth.sass'
 
 const AuthPage = () => {
     const [valueInputLogin, setValueInputLogin] = React.useState('')
@@ -27,7 +28,7 @@ const AuthPage = () => {
         setValueInputPassword(value)
     }
     return (
-        <>
+        <div className="auth">
             <Form
                 title="Simple Hotel Check"
                 additionalClassNames={['main-form__auth']}
@@ -59,7 +60,7 @@ const AuthPage = () => {
                     type="big"
                 />
             </Form>
-        </>
+        </div>
     )
 }
 
