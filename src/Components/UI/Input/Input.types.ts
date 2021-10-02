@@ -11,4 +11,6 @@ export type propsTypeInput = {
     additionalClassNames?: string[],
     errorMessage?: string,
     maxLength?: number,
+    max?: string,
+    min?: string,
 }

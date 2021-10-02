@@ -54,7 +54,7 @@ const Aside = (props: propsTypeAside) => {
         }
     }
     const onChangeTotalDayHandler = (e: React.ChangeEvent) => {
-        const value = (e.target as HTMLInputElement).value
+        const value = Math.abs(+(e.target as HTMLInputElement).value).toString()
         setIsDirtyInputTotalDay(true)
         setValueInputTotalDay(value)
         dispatch(hotelAction.setTotalDays(+value))
@@ -66,7 +66,8 @@ const Aside = (props: propsTypeAside) => {
     }
 
     const isValidForm = (): boolean => {
-        return !!valueInputLocation && isDirtyInputLocation && isValidInputLocation
+        return !!valueInputLocation && isDirtyInputLocation && isValidInputLocation &&
+            !!valueInputTotalDay && isDirtyInputTotalDay && isValidInputTotalDay
     }
 
     return (
@@ -103,6 +104,8 @@ const Aside = (props: propsTypeAside) => {
                     isDirty={isDirtyInputTotalDay}
                     onChange={onChangeTotalDayHandler}
                     additionalClassNames={['main-form__input', 'input--bold-legend']}
+                    min="1"
+                    max="100"
                 />
 
                 <Button

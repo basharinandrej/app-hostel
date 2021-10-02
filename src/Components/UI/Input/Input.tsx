@@ -15,7 +15,9 @@ const Input = (props: propsTypeInput) => {
         isDirty,
         isRequired,
         onChange,
-        maxLength
+        maxLength,
+        max,
+        min
     } = props
     const [isBlur, setIsBlur] = React.useState(false)
     const isPassword = type === 'password'
@@ -43,6 +45,8 @@ const Input = (props: propsTypeInput) => {
                 onChange={onChange}
                 onBlur={onBlurHandler}
                 autoComplete="off"
+                max={max}
+                min={min}
             />
             {(isError && !isPassword) && <span className="input__error-message">{errorMessage || 'Заполните поле'}</span>}
             {(isError && isPassword) && <span className="input__error-message">Минимальная длинна пароля 8 символов, сейчас {value.length}</span>}
