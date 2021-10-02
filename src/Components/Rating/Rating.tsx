@@ -11,7 +11,7 @@ const Rating = (props: propsTypeRating) => {
         <>
             {fantomArray.map((star, idx) => {
                     return (
-                        <span className={`star ${idx+ 1 < rating ? 'star--active' : 'star--disabled'}`} key={idx}>{iconRating.star}</span>
+                        <span className={`star ${idx < rating ? 'star--active' : 'star--disabled'}`} key={idx}>{iconRating.star}</span>
                     )
                 })
             }
