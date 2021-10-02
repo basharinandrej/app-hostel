@@ -9,15 +9,21 @@ const Actions = {
             payload: hostels
         }
     },
+    setLocation: (location: string) => {
+        return {
+            type: actionTypeHotel.SET_LOCATION,
+            payload: location
+        }
+    },
 
     //AsyncActions
-    getHotels: () => async (dispatch: Dispatch) => {
+    getHotels: () => async (dispatch: Dispatch, getState: any) => {
+        const {location} = getState().hotelReducer
         try {
-            const response = await hostelApi.getHotels()
+            const response = await hostelApi.getHotels(location)
             const data = await response.data
 
-            //@ts-ignore
-            dispatch(Actions.setHotels(data.map((hotel: any) => {
+            dispatch(Actions.setHotels((data as any).map((hotel: any) => {
                 return {
                     id: hotel.hotelId,
                     title: hotel.hotelName,

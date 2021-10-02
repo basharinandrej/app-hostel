@@ -27,11 +27,16 @@ const AuthPage = () => {
 
         setValueInputPassword(value)
     }
+
+    const onSubmitHandler = (e: React.FormEvent) => {
+
+    }
     return (
         <div className="auth">
             <Form
                 title="Simple Hotel Check"
                 additionalClassNames={['main-form__auth']}
+                onSubmit={onSubmitHandler}
             >
                 <Input
                     legend="Логин"

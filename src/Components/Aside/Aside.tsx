@@ -5,9 +5,12 @@ import Form from "Components/Form/Form";
 import Input from "Components/UI/Input/Input";
 import Button from "Components/UI/Button/Button";
 import Favorites from "../Favorites/Favorites";
+import {useDispatch} from "react-redux";
+import hotelAction from "../../redux/ducks/hotel/hotelAction";
 
 
 const Aside = () => {
+    const dispatch = useDispatch()
     const [valueInputLocation, setValueInputLocation] = React.useState('')
     const [isDirtyInputLocation, setIsDirtyInputLocation] = React.useState(false)
     const [isValidInputLocation, setIsValidInputLocation] = React.useState(false)
@@ -20,10 +23,12 @@ const Aside = () => {
     const [isDirtyInputCheckInDay, setIsDirtyInputCheckInDay] = React.useState(false)
     const [isValidInputCheckInDay, setIsValidInputCheckInDay] = React.useState(false)
 
+
     const onChangeLocationHandler = (e: React.ChangeEvent) => {
         const value = (e.target as HTMLInputElement).value
         setIsDirtyInputLocation(true)
         setValueInputLocation(value)
+        dispatch(hotelAction.setLocation(value))
         if (value) {
             setIsValidInputLocation(true)
         } else {
@@ -51,9 +56,18 @@ const Aside = () => {
         }
     }
 
+    const isValidForm = (): boolean => {
+        return !!valueInputLocation && isDirtyInputLocation && isValidInputLocation
+    }
+    const onSubmitHandler = (e: React.FormEvent) => {
+        e.preventDefault()
+        dispatch(hotelAction.getHotels())
+    }
     return (
         <aside className="layout__aside aside">
-            <Form additionalClassNames={['aside__main-form']}>
+            <Form additionalClassNames={['aside__main-form']}
+                  onSubmit={onSubmitHandler}
+            >
                 <Input
                     legend="Локация"
                     type="text"
@@ -86,7 +100,9 @@ const Aside = () => {
                 />
 
                 <Button
-                    text="Войти"
+                    text="Найти"
+                    disabled={!isValidForm()}
+                    isSubmit={true}
                     type="big"
                 />
             </Form>

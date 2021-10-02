@@ -8,11 +8,14 @@ const Form = (props: propsTypeForm) => {
     const {
         additionalClassNames,
         title,
-        children
+        children,
+        onSubmit
     } = props
 
     return (
-        <form className={getFormattedFormClassNames(additionalClassNames)}>
+        <form className={getFormattedFormClassNames(additionalClassNames)}
+              onSubmit={onSubmit}
+        >
             {title && <h1 className="main-form__title">{title}</h1>}
 
             <div className="main-form__box">
