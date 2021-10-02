@@ -1,6 +1,7 @@
 export type propsTypeListHotel = {
     hotels: hotelType[],
     toggleFavoritesHotel: (id: number) => void
+    typeList?: 'small'
 }
 
 export type hotelType = {

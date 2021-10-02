@@ -14,6 +14,7 @@ const Favorites = (props: propsTypeFavorites) => {
             <ListHotel
                 hotels={favoriteHotels}
                 toggleFavoritesHotel={toggleFavoritesHotelHandler}
+                typeList="small"
             />
         </div>
     )

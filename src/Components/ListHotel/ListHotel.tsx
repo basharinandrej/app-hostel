@@ -6,10 +6,10 @@ import avatar from 'images/house.png'
 import Rating from 'Components/Rating/Rating'
 
 const ListHotel = (props: propsTypeListHotel) => {
-    const {hotels, toggleFavoritesHotel} = props
+    const {hotels, toggleFavoritesHotel, typeList} = props
 
     return (
-        <ul className="list-hotel">
+        <ul className={`list-hotel ${typeList === 'small' ? 'list-hotel--small' : ''}`}>
 
             {hotels.map((hotel: hotelType) => {
                 return (
