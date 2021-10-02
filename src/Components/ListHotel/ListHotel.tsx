@@ -1,8 +1,9 @@
 import React from 'react'
-import { propsTypeListHotel } from './ListHotel.types'
+import {hotelType, propsTypeListHotel} from './ListHotel.types'
 import './ListHotel.sass'
 import { iconsListHotel } from './ListHotel.icons'
 import avatar from 'images/house.png'
+import Rating from 'Components/Rating/Rating'
 
 const ListHotel = (props: propsTypeListHotel) => {
     const {hotels} = props
@@ -10,7 +11,7 @@ const ListHotel = (props: propsTypeListHotel) => {
     return (
         <ul className="list-hotel">
 
-            {hotels.map((hotel) => {
+            {hotels.map((hotel: hotelType) => {
                 return (
                     <li className="list-hotel__hotel-card hotel-card">
                         <div className="hotel-card__avatar">
@@ -42,7 +43,7 @@ const ListHotel = (props: propsTypeListHotel) => {
 
                             <div className="hotel-card-body__wrapper">
                                 <div className="hotel-card-body__rating">
-                                    {hotel.rating}
+                                    <Rating rating={hotel.rating}/>
                                 </div>
 
                                 <p className="hotel-card-body__paragraph-price">
