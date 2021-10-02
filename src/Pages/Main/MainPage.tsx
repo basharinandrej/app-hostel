@@ -8,12 +8,15 @@ import {useDispatch} from "react-redux";
 import hotelAction from "redux/ducks/hotel/hotelActions";
 import { useSelector } from "redux/commonTypes";
 import {hotelType} from "../../Components/ListHotel/ListHotel.types";
+import declOfNumOnlyText from "../../helpers/declOfNumberOnlyText";
 
 
 
 const MainPage = () => {
     const dispatch = useDispatch()
-    const {hotels, favoriteHotels, totalDays} = useSelector(state => state.hotelReducer)
+    const {hotels, favoriteHotels}:{
+        hotels: Array<hotelType>, favoriteHotels: Array<hotelType>
+    } = useSelector(state => state.hotelReducer)
 
     useEffect(() => {
         dispatch(hotelAction.getHotels())
@@ -36,8 +39,11 @@ const MainPage = () => {
                     toggleFavoritesHotelHandler={toggleFavoritesHotelHandler}
                     onSubmitForm={onSubmitFormHandler}
                 />
-
                 <main className="layout__main main">
+                    <h2 className="main__title">Добавлено в Избранное:&nbsp;
+                        <b>{favoriteHotels.length}</b>&nbsp;
+                        {declOfNumOnlyText(favoriteHotels.length, ["отель", "отеля", "отелей"])}
+                    </h2>
                     <ListHotel
                         hotels={hotels}
                         toggleFavoritesHotel={toggleFavoritesHotelHandler}
