@@ -1,7 +1,7 @@
 export type propsTypeListHotel = {
     hotels: hotelType[],
     toggleFavoritesHotel: (id: number) => void
-    typeList?: 'small'
+    typeList?: 'small',
 }
 
 export type hotelType = {
@@ -9,5 +9,6 @@ export type hotelType = {
     title: string,
     price: number,
     rating: number,
-    avatar?: string
+    totalDays: number
+    checkIn: string
 }

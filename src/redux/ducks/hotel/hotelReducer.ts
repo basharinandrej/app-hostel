@@ -1,10 +1,14 @@
 import {actionTypeHotel, initialStateTypeHostel} from "./hotelTypes";
 import {hotelType} from "../../../Components/ListHotel/ListHotel.types";
+import moment from 'moment'
 
 const initialState: initialStateTypeHostel = {
     hotels: [],
     favoriteHotels: [],
-    location: 'Moscow'
+    location: 'Moscow',
+    totalDays: 1,
+    checkIn: moment().format('YYYY-MM-DD'),
+    checkOut: moment().format('YYYY-MM-DD'),
 }
 
 const hotelReducer = (state = initialState, { type, payload }: actionTypeHotel) => {
@@ -33,6 +37,18 @@ const hotelReducer = (state = initialState, { type, payload }: actionTypeHotel) 
                         [...state.hotels].find((hotel: hotelType) => hotel.id === payload)
                     ]
                 }
+            }
+        case actionTypeHotel.SET_DATE_CHECK_IN:
+            return {
+                ...state, checkIn: payload
+            }
+        case actionTypeHotel.SET_TOTAL_DAYS:
+            return {
+                ...state, totalDays: payload
+            }
+        case actionTypeHotel.SET_DATE_CHECK_OUT:
+            return {
+                ...state, checkOut: moment().add(state.totalDays, 'days').format('YYYY-MM-DD')
             }
         default:
             return state

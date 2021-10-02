@@ -4,16 +4,16 @@ import './ListHotel.sass'
 import { iconsListHotel } from './ListHotel.icons'
 import avatar from 'images/house.png'
 import Rating from 'Components/Rating/Rating'
+import moment from 'moment'
 
 const ListHotel = (props: propsTypeListHotel) => {
     const {hotels, toggleFavoritesHotel, typeList} = props
 
     return (
         <ul className={`list-hotel ${typeList === 'small' ? 'list-hotel--small' : ''}`}>
-
-            {hotels.map((hotel: hotelType) => {
+            {hotels.map((hotel: hotelType, idx:number) => {
                 return (
-                    <li className="list-hotel__hotel-card hotel-card">
+                    <li className="list-hotel__hotel-card hotel-card" key={idx}>
                         <div className="hotel-card__avatar">
                             <img className="hotel-card__avatar-img"
                                  src={avatar}
@@ -26,11 +26,11 @@ const ListHotel = (props: propsTypeListHotel) => {
                                     <h3 className="hotel-card-body__title">{hotel.title}</h3>
 
                                     <div className="hotel-card-body__paragraph-box">
-                                        <p className="hotel-card-body__paragraph">28 June, 2020</p>
+                                        <p className="hotel-card-body__paragraph">{moment(hotel.checkIn).format('DD MMM, yyyy')}</p>
                                         &nbsp;&nbsp;
                                         <span className="hotel-card-body__space"/>
                                         &nbsp;&nbsp;
-                                        <p className="hotel-card-body__paragraph">1 день</p>
+                                        <p className="hotel-card-body__paragraph">{hotel.totalDays} день</p>
                                     </div>
                                 </div>
 

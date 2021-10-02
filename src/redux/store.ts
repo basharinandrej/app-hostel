@@ -1,12 +1,12 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./rootReducer";
-
+import createSagaMiddleware from 'redux-saga'
+import { setDateCheckOutWatcher } from "./ducks/hotel/hotelSagas";
 
 declare global {
     interface Window {
         __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-        //datesArr: number[];
         datesArr: {
             [name: string]: number
         };
@@ -15,12 +15,14 @@ declare global {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const sagaMiddleware = createSagaMiddleware()
 
-const middleware = [thunk];
+const middleware = [thunk, sagaMiddleware];
 
 const store = createStore(
     rootReducer,
     composeEnhancers(applyMiddleware(...middleware))
 );
 
+sagaMiddleware.run(setDateCheckOutWatcher) // передать watcher
 export default store;

@@ -4,7 +4,10 @@ import './Favorites.sass'
 import {propsTypeFavorites} from "./Favorites.types";
 
 const Favorites = (props: propsTypeFavorites) => {
-    const {favoriteHotels, toggleFavoritesHotelHandler} = props
+    const {
+        favoriteHotels,
+        toggleFavoritesHotelHandler,
+    } = props
 
     return (
         <div className="favorites">

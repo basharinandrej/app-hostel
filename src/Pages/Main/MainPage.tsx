@@ -5,7 +5,7 @@ import Head from "Components/Head/Head"
 import Aside from "Components/Aside/Aside"
 import ListHotel from "../../Components/ListHotel/ListHotel";
 import {useDispatch} from "react-redux";
-import hotelAction from "redux/ducks/hotel/hotelAction";
+import hotelAction from "redux/ducks/hotel/hotelActions";
 import { useSelector } from "redux/commonTypes";
 import {hotelType} from "../../Components/ListHotel/ListHotel.types";
 
@@ -13,7 +13,7 @@ import {hotelType} from "../../Components/ListHotel/ListHotel.types";
 
 const MainPage = () => {
     const dispatch = useDispatch()
-    const {hotels, favoriteHotels} = useSelector(state => state.hotelReducer)
+    const {hotels, favoriteHotels, totalDays} = useSelector(state => state.hotelReducer)
 
     useEffect(() => {
         dispatch(hotelAction.getHotels())

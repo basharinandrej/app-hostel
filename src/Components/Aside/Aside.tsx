@@ -6,8 +6,9 @@ import Input from "Components/UI/Input/Input";
 import Button from "Components/UI/Button/Button";
 import Favorites from "../Favorites/Favorites";
 import {useDispatch} from "react-redux";
-import hotelAction from "../../redux/ducks/hotel/hotelAction";
+import hotelAction from "../../redux/ducks/hotel/hotelActions";
 import { propsTypeAside } from './Aside.types';
+import moment from "moment";
 
 
 const Aside = (props: propsTypeAside) => {
@@ -15,7 +16,7 @@ const Aside = (props: propsTypeAside) => {
     const {
         favoriteHotels,
         toggleFavoritesHotelHandler,
-        onSubmitForm
+        onSubmitForm,
     } = props
     const [valueInputLocation, setValueInputLocation] = React.useState('')
     const [isDirtyInputLocation, setIsDirtyInputLocation] = React.useState(false)
@@ -25,7 +26,7 @@ const Aside = (props: propsTypeAside) => {
     const [isDirtyInputTotalDay, setIsDirtyInputTotalDay] = React.useState(false)
     const [isValidInputTotalDay, setIsValidInputTotalDay] = React.useState(false)
 
-    const [valueInputCheckInDay, setValueInputCheckInDay] = React.useState('')
+    const [valueInputCheckInDay, setValueInputCheckInDay] = React.useState(moment().format('YYYY-MM-DD'))
     const [isDirtyInputCheckInDay, setIsDirtyInputCheckInDay] = React.useState(false)
     const [isValidInputCheckInDay, setIsValidInputCheckInDay] = React.useState(false)
 
@@ -41,24 +42,26 @@ const Aside = (props: propsTypeAside) => {
             setIsValidInputLocation(false)
         }
     }
-    const onChangeTotalDayHandler = (e: React.ChangeEvent) => {
-        const value = (e.target as HTMLInputElement).value
-        setIsDirtyInputTotalDay(true)
-        setValueInputTotalDay(value)
-        if (value) {
-            setIsValidInputTotalDay(true)
-        } else {
-            setIsValidInputTotalDay(false)
-        }
-    }
     const onChangeCheckInDayHandler = (e: React.ChangeEvent) => {
         const value = (e.target as HTMLInputElement).value
         setIsDirtyInputCheckInDay(true)
         setValueInputCheckInDay(value)
+        dispatch(hotelAction.setDateCheckIn(value))
         if (value) {
             setIsValidInputCheckInDay(true)
         } else {
             setIsValidInputCheckInDay(false)
+        }
+    }
+    const onChangeTotalDayHandler = (e: React.ChangeEvent) => {
+        const value = (e.target as HTMLInputElement).value
+        setIsDirtyInputTotalDay(true)
+        setValueInputTotalDay(value)
+        dispatch(hotelAction.setTotalDays(+value))
+        if (value) {
+            setIsValidInputTotalDay(true)
+        } else {
+            setIsValidInputTotalDay(false)
         }
     }
 

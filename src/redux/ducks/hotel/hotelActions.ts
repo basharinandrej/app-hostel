@@ -21,11 +21,33 @@ const Actions = {
             payload: idHotel
         }
     },
+    setDateCheckIn: (dateCheckIn: string) => {
+        return {
+            type: actionTypeHotel.SET_DATE_CHECK_IN,
+            payload: dateCheckIn
+        }
+    },
+    setTotalDays: (totalDays: number) => {
+        return {
+            type: actionTypeHotel.SET_TOTAL_DAYS,
+            payload: totalDays
+        }
+    },
+    setDateCheckOut: () => {
+        return {
+            type: actionTypeHotel.SET_DATE_CHECK_OUT
+        }
+    },
     //AsyncActions
     getHotels: () => async (dispatch: Dispatch, getState: any) => {
-        const {location} = getState().hotelReducer
+        const {location, checkIn, checkOut, totalDays} = getState().hotelReducer
         try {
-            const response = await hostelApi.getHotels(location)
+            const dataRequest = {
+                location,
+                checkIn,
+                checkOut
+            }
+            const response = await hostelApi.getHotels(dataRequest)
             const data = await response.data
 
             dispatch(Actions.setHotels((data as any).map((hotel: any) => {
@@ -33,7 +55,9 @@ const Actions = {
                     id: hotel.hotelId,
                     title: hotel.hotelName,
                     rating: hotel.stars,
-                    price: hotel.priceFrom
+                    price: hotel.priceFrom,
+                    totalDays: totalDays,
+                    checkIn: checkIn
                 }
             })))
         } catch (err) {
