@@ -11,8 +11,12 @@ import { propsTypeAside } from './Aside.types';
 
 
 const Aside = (props: propsTypeAside) => {
-    const {favoriteHotels, toggleFavoritesHotelHandler} = props
     const dispatch = useDispatch()
+    const {
+        favoriteHotels,
+        toggleFavoritesHotelHandler,
+        onSubmitForm
+    } = props
     const [valueInputLocation, setValueInputLocation] = React.useState('')
     const [isDirtyInputLocation, setIsDirtyInputLocation] = React.useState(false)
     const [isValidInputLocation, setIsValidInputLocation] = React.useState(false)
@@ -61,14 +65,11 @@ const Aside = (props: propsTypeAside) => {
     const isValidForm = (): boolean => {
         return !!valueInputLocation && isDirtyInputLocation && isValidInputLocation
     }
-    const onSubmitHandler = (e: React.FormEvent) => {
-        e.preventDefault()
-        dispatch(hotelAction.getHotels())
-    }
+
     return (
         <aside className="layout__aside aside">
             <Form additionalClassNames={['aside__main-form']}
-                  onSubmit={onSubmitHandler}
+                  onSubmit={onSubmitForm}
             >
                 <Input
                     legend="Локация"
