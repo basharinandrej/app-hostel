@@ -41,6 +41,7 @@ const MainPage = () => {
                     <ListHotel
                         hotels={hotels}
                         toggleFavoritesHotel={toggleFavoritesHotelHandler}
+                        additionalClassNames={['main__list-hotel']}
                     />
 
                     {(hotels as Array<hotelType>).length === 0 && <p>Hotel Not Found</p>}

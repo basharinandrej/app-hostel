@@ -5,12 +5,18 @@ import { iconsListHotel } from './ListHotel.icons'
 import avatar from 'images/house.png'
 import Rating from 'Components/Rating/Rating'
 import moment from 'moment'
+import {getFormattedListHotelClassNames} from "./ListHotel.functions";
 
 const ListHotel = (props: propsTypeListHotel) => {
-    const {hotels, toggleFavoritesHotel, typeList} = props
+    const {
+        hotels,
+        toggleFavoritesHotel,
+        typeList,
+        additionalClassNames
+    } = props
 
     return (
-        <ul className={`list-hotel ${typeList === 'small' ? 'list-hotel--small' : ''}`}>
+        <ul className={`${typeList === 'small' ? 'list-hotel--small' : ''} ${getFormattedListHotelClassNames(additionalClassNames)}`}>
             {hotels.map((hotel: hotelType, idx:number) => {
                 return (
                     <li className="list-hotel__hotel-card hotel-card" key={idx}>

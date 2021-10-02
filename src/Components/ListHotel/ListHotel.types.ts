@@ -2,6 +2,7 @@ export type propsTypeListHotel = {
     hotels: hotelType[],
     toggleFavoritesHotel: (id: number) => void
     typeList?: 'small',
+    additionalClassNames?: string[]
 }
 
 export type hotelType = {

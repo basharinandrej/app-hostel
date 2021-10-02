@@ -18,6 +18,7 @@ const Favorites = (props: propsTypeFavorites) => {
                 hotels={favoriteHotels}
                 toggleFavoritesHotel={toggleFavoritesHotelHandler}
                 typeList="small"
+                additionalClassNames={['favorites__list-hotel']}
             />
         </div>
     )
