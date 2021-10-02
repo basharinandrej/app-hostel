@@ -57,6 +57,7 @@ const ListHotel = (props: propsTypeListHotel) => {
                 )
             })}
 
+            {hotels.length === 0 && <p>Hotel Not Found</p>}
         </ul>
     )
 }
