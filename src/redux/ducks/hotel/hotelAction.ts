@@ -17,7 +17,7 @@ const Actions = {
             const data = await response.data
 
             //@ts-ignore
-            dispatch(Actions.setHostels(data.map((hotel: any) => {
+            dispatch(Actions.setHotels(data.map((hotel: any) => {
                 return {
                     id: hotel.hotelId,
                     title: hotel.hotelName,
