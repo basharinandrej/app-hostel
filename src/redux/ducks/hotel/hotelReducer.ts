@@ -48,7 +48,7 @@ const hotelReducer = (state = initialState, { type, payload }: actionTypeHotel) 
             }
         case actionTypeHotel.SET_DATE_CHECK_OUT:
             return {
-                ...state, checkOut: moment().add(state.totalDays, 'days').format('YYYY-MM-DD')
+                ...state, checkOut: moment(state.checkIn).add(state.totalDays, 'days').format('YYYY-MM-DD')
             }
         default:
             return state
