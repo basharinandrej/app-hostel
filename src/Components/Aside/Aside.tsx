@@ -4,6 +4,7 @@ import './Aside.sass'
 import Form from "Components/Form/Form";
 import Input from "Components/UI/Input/Input";
 import Button from "Components/UI/Button/Button";
+import Favorites from "../Favorites/Favorites";
 
 
 const Aside = () => {
@@ -89,6 +90,8 @@ const Aside = () => {
                     type="big"
                 />
             </Form>
+
+            <Favorites />
         </aside>
     )
 }
