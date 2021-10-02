@@ -6,7 +6,7 @@ import avatar from 'images/house.png'
 import Rating from 'Components/Rating/Rating'
 
 const ListHotel = (props: propsTypeListHotel) => {
-    const {hotels} = props
+    const {hotels, toggleFavoritesHotel} = props
 
     return (
         <ul className="list-hotel">
@@ -35,7 +35,8 @@ const ListHotel = (props: propsTypeListHotel) => {
                                 </div>
 
                                 <div className="hotel-card-body__btn's">
-                            <span className="hotel-card-body__favorites">
+                            <span className="hotel-card-body__favorites"
+                                  onClick={() => toggleFavoritesHotel(hotel.id)}>
                                 {iconsListHotel.heart}
                             </span>
                                 </div>
@@ -58,7 +59,6 @@ const ListHotel = (props: propsTypeListHotel) => {
                 )
             })}
 
-            {hotels.length === 0 && <p>Hotel Not Found</p>}
         </ul>
     )
 }

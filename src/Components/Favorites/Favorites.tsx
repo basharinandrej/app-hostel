@@ -1,26 +1,20 @@
 import ListHotel from 'Components/ListHotel/ListHotel'
 import React from 'react'
 import './Favorites.sass'
+import {propsTypeFavorites} from "./Favorites.types";
 
-const listHotel = {
-    title: "Moscow Marriott Grand Hotel",
-    price: 23_924,
-    rating: 3,
-}
-
-const Favorites = () => {
-
+const Favorites = (props: propsTypeFavorites) => {
+    const {favoriteHotels, toggleFavoritesHotelHandler} = props
 
     return (
         <div className="favorites">
 
             <h2 className="favorites__title">Избранное</h2>
 
-            {/*<ListHotel*/}
-            {/*    title={listHotel.title}*/}
-            {/*    price={listHotel.price}*/}
-            {/*    rating={listHotel.rating}*/}
-            {/*/>*/}
+            <ListHotel
+                hotels={favoriteHotels}
+                toggleFavoritesHotel={toggleFavoritesHotelHandler}
+            />
         </div>
     )
 }

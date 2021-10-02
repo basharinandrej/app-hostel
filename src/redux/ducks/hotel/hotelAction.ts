@@ -15,7 +15,12 @@ const Actions = {
             payload: location
         }
     },
-
+    toggleFavoritesHotels: (idHotel: number) => {
+        return {
+            type: actionTypeHotel.TOGGLE_FAVORITES_HOTEL,
+            payload: idHotel
+        }
+    },
     //AsyncActions
     getHotels: () => async (dispatch: Dispatch, getState: any) => {
         const {location} = getState().hotelReducer

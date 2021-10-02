@@ -7,9 +7,11 @@ import Button from "Components/UI/Button/Button";
 import Favorites from "../Favorites/Favorites";
 import {useDispatch} from "react-redux";
 import hotelAction from "../../redux/ducks/hotel/hotelAction";
+import { propsTypeAside } from './Aside.types';
 
 
-const Aside = () => {
+const Aside = (props: propsTypeAside) => {
+    const {favoriteHotels, toggleFavoritesHotelHandler} = props
     const dispatch = useDispatch()
     const [valueInputLocation, setValueInputLocation] = React.useState('')
     const [isDirtyInputLocation, setIsDirtyInputLocation] = React.useState(false)
@@ -107,7 +109,10 @@ const Aside = () => {
                 />
             </Form>
 
-            <Favorites />
+            <Favorites
+                favoriteHotels={favoriteHotels}
+                toggleFavoritesHotelHandler={toggleFavoritesHotelHandler}
+            />
         </aside>
     )
 }
