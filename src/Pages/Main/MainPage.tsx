@@ -1,21 +1,23 @@
-import React from "react"
+import React, {useEffect} from "react"
 import './MainPage.sass'
 
 import Head from "Components/Head/Head"
 import Aside from "Components/Aside/Aside"
 import ListHotel from "../../Components/ListHotel/ListHotel";
-import iconHostel from "../../images/house.png";
+import {useDispatch} from "react-redux";
+import hotelAction from "redux/ducks/hotel/hotelAction";
+import { useSelector } from "redux/commonTypes";
 
-const listHotel = {
-    title: "Moscow Marriott Grand Hotel",
-    price: 23_924,
-    rating: 3,
-    avatar: iconHostel
-}
 
 
 const MainPage = () => {
-
+    const dispatch = useDispatch()
+    const {
+        hotels
+    } = useSelector(state => state.hotelReducer)
+    useEffect(() => {
+        dispatch(hotelAction.getHotels())
+    }, [])
 
     return (
         <section className="body__layout layout">
@@ -26,10 +28,7 @@ const MainPage = () => {
 
                 <main className="layout__main main">
                     <ListHotel
-                        title={listHotel.title}
-                        price={listHotel.price}
-                        rating={listHotel.rating}
-                        avatar={listHotel.avatar}
+                        hotels={hotels}
                     />
                 </main>
             </div>

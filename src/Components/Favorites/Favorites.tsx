@@ -16,11 +16,11 @@ const Favorites = () => {
 
             <h2 className="favorites__title">Избранное</h2>
 
-            <ListHotel
-                title={listHotel.title}
-                price={listHotel.price}
-                rating={listHotel.rating}
-            />
+            {/*<ListHotel*/}
+            {/*    title={listHotel.title}*/}
+            {/*    price={listHotel.price}*/}
+            {/*    rating={listHotel.rating}*/}
+            {/*/>*/}
         </div>
     )
 }
