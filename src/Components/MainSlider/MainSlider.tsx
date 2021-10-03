@@ -7,10 +7,11 @@ import './MainSlider.sass'
 const MainSlider = (props: {slides: string[] }) => {
     const settingsSlider = {
         dots: false,
+        arrows: false,
         infinite: true,
-        speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        variableWidth: true
     }
 
     return (
@@ -18,7 +19,7 @@ const MainSlider = (props: {slides: string[] }) => {
             <Slider {...settingsSlider}>
                 {props.slides.map(((imgName: string, idx: number) => {
                     return (
-                        <div key={idx}>
+                        <div key={idx} className="main-slider__slide">
                             <img src={require(`images/${imgName}`).default} alt="slide-img"/>
                         </div>
                     )
