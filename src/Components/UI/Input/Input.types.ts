@@ -10,7 +10,7 @@ export type propsTypeInput = {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     additionalClassNames?: string[],
     errorMessage?: string,
-    maxLength?: number,
+    minLength?: number,
     max?: string,
     min?: string,
 }

@@ -14,11 +14,14 @@ import BreadCrumbs from "Components/BreadCrumbs/BreadCrumbs";
 import moment from "moment";
 import 'moment/locale/ru';
 import MainSlider from "Components/MainSlider/MainSlider";
+import {useHistory} from "react-router-dom";
+import authActions from "../../redux/ducks/auth/authActions";
 moment.locale('ru');
 
 
 const MainPage = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
     const {
         hotels,
         favoriteHotels,
@@ -53,9 +56,15 @@ const MainPage = () => {
     const onClickSortRatingHandler = (e: React.MouseEvent) => {
         dispatch(hotelAction.setSortHotelByRating())
     }
+    const onClickLogout = () => {
+        localStorage.removeItem('authAppHotel');
+        dispatch(authActions.setAuth(false))
+    }
     return (
         <section className="body__layout layout">
-            <Head />
+            <Head
+                onClickLogout={onClickLogout}
+            />
 
             <div className="layout__container container">
                 <Aside

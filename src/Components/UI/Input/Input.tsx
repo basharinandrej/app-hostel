@@ -15,7 +15,7 @@ const Input = (props: propsTypeInput) => {
         isDirty,
         isRequired,
         onChange,
-        maxLength,
+        minLength,
         max,
         min
     } = props
@@ -24,7 +24,7 @@ const Input = (props: propsTypeInput) => {
     let isError;
 
     if (isPassword) {
-        isError = isDirty && isBlur && isRequired && !(maxLength! <= value.length)
+        isError = isDirty && isBlur && isRequired && !(minLength! <= value.length)
     } else {
         isError = !isValid && isDirty && isBlur && isRequired
     }

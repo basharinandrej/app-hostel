@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 import hotelReducer from "redux/ducks/hotel/hotelReducer";
+import authReducer from "./ducks/auth/authReducer";
 
 const rootReducer = combineReducers({
-    hotelReducer
+    hotelReducer,
+    authReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>

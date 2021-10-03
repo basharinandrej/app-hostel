@@ -4,14 +4,22 @@ import Form from "Components/Form/Form";
 import Input from "Components/UI/Input/Input";
 import Button from "Components/UI/Button/Button";
 import './AuthPage.sass'
+import {useDispatch} from "react-redux";
+import authActions from "../../redux/ducks/auth/authActions";
 
 const AuthPage = () => {
+    const dispatch = useDispatch()
+    const minLengthPassword = 8
     const [valueInputLogin, setValueInputLogin] = React.useState('')
     const [isDirtyInputLogin, setIsDirtyInputLogin] = React.useState(false)
     const [isValidInputLogin, setIsValidInputLogin] = React.useState(false)
 
     const [valueInputPassword, setValueInputPassword] = React.useState('')
     const [isDirtyInputPassword, setIsDirtyInputPassword] = React.useState(false)
+
+    React.useEffect(() => {
+        dispatch(authActions.setAuth(!!localStorage.getItem('authAppHotel')))
+    }, [])
 
     const onChangeLoginHandler = (e: React.ChangeEvent) => {
         const value = (e.target as HTMLInputElement).value
@@ -20,16 +28,23 @@ const AuthPage = () => {
         setValueInputLogin(value)
         setIsValidInputLogin(loginRegExp.test(value));
     }
-
     const onChangePasswordHandler = (e: React.ChangeEvent) => {
         const value = (e.target as HTMLInputElement).value
         setIsDirtyInputPassword(true)
 
         setValueInputPassword(value)
     }
-
+    const isValidForm = (): boolean => {
+        return !!valueInputLogin && isDirtyInputLogin && isValidInputLogin &&
+            !!valueInputPassword && isDirtyInputPassword && valueInputPassword.length >= minLengthPassword
+    }
     const onSubmitHandler = (e: React.FormEvent) => {
-
+        const dataAuth = {
+            password: valueInputPassword,
+            login: valueInputLogin
+        }
+        localStorage.setItem('authAppHotel', JSON.stringify(dataAuth))
+        dispatch(authActions.setAuth(true))
     }
     return (
         <div className="auth">
@@ -56,13 +71,15 @@ const AuthPage = () => {
                     value={valueInputPassword}
                     isDirty={isDirtyInputPassword}
                     onChange={onChangePasswordHandler}
-                    maxLength={8}
+                    minLength={minLengthPassword}
                     additionalClassNames={['main-form__input--gap']}
                 />
 
                 <Button
                     text="Войти"
                     type="big"
+                    disabled={!isValidForm()}
+                    isSubmit={true}
                 />
             </Form>
         </div>
