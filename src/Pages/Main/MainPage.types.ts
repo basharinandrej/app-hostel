@@ -7,4 +7,5 @@ export type selectorTypesMainPage = {
     locationResponse: string
     checkIn: string
     isLoadingHotels: boolean
+    sliderImages: string[]
 }

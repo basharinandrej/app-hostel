@@ -1,5 +1,5 @@
 import {actionTypeHotel, initialStateTypeHostel} from "./hotelTypes";
-import {hotelType} from "../../../Components/ListHotel/ListHotel.types";
+import {hotelType} from "Components/ListHotel/ListHotel.types";
 import moment from 'moment'
 
 const initialState: initialStateTypeHostel = {
@@ -10,7 +10,11 @@ const initialState: initialStateTypeHostel = {
     totalDays: 1,
     checkIn: moment().format('YYYY-MM-DD'),
     checkOut: moment().format('YYYY-MM-DD'),
-    isLoadingHotels: false
+    isLoadingHotels: false,
+    sliderImages: [
+        'sliderImg/1.png', 'sliderImg/2.png', 'sliderImg/3.png',
+        'sliderImg/1.png', 'sliderImg/2.png', 'sliderImg/3.png'
+    ]
 }
 
 const hotelReducer = (state = initialState, { type, payload }: actionTypeHotel) => {

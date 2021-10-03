@@ -9,6 +9,7 @@ export type initialStateTypeHostel = {
     checkIn: string,
     checkOut: string,
     isLoadingHotels: boolean
+    sliderImages: string[],
 }
 export const limitRequestHotel = 10
 export type actionTypeHotel = {type: string, payload: any}

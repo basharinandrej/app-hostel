@@ -3,16 +3,17 @@ import './MainPage.sass'
 
 import Head from "Components/Head/Head"
 import Aside from "Components/Aside/Aside"
-import ListHotel from "../../Components/ListHotel/ListHotel";
+import ListHotel from "Components/ListHotel/ListHotel";
 import {useDispatch} from "react-redux";
 import hotelAction from "redux/ducks/hotel/hotelActions";
 import { useSelector } from "redux/commonTypes";
-import {hotelType} from "../../Components/ListHotel/ListHotel.types";
+import {hotelType} from "Components/ListHotel/ListHotel.types";
 import declOfNumOnlyText from "../../helpers/declOfNumberOnlyText";
 import {selectorTypesMainPage} from "./MainPage.types";
-import BreadCrumbs from "../../Components/BreadCrumbs/BreadCrumbs";
+import BreadCrumbs from "Components/BreadCrumbs/BreadCrumbs";
 import moment from "moment";
 import 'moment/locale/ru';
+import MainSlider from "Components/MainSlider/MainSlider";
 moment.locale('ru');
 
 
@@ -24,7 +25,8 @@ const MainPage = () => {
         locationRequest,
         locationResponse,
         checkIn,
-        isLoadingHotels
+        isLoadingHotels,
+        sliderImages
     } : selectorTypesMainPage = useSelector(state => state.hotelReducer)
     const [localCheckIn, setLocalCheckIn] = useState(checkIn)
 
@@ -63,6 +65,9 @@ const MainPage = () => {
                         <p className="main__paragraph">{moment(localCheckIn).format('DD MMMM YYYY')}</p>
                     </div>
 
+                    <MainSlider
+                        slides={sliderImages}
+                    />
                     <h2 className="main__title">Добавлено в Избранное:&nbsp;
                         <b>{favoriteHotels.length}</b>&nbsp;
                         {declOfNumOnlyText(favoriteHotels.length, ["отель", "отеля", "отелей"])}
