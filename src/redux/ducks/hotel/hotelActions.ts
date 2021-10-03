@@ -1,6 +1,7 @@
 import { Dispatch } from "redux";
 import hostelApi from "./hotelApi";
 import {actionTypeHotel, hotelResponseDataTypes} from "./hotelTypes";
+import {RootState} from "../../rootReducer";
 
 const Actions = {
     setHotels: (hostels: {title: string, id: number}[]) => {
@@ -44,8 +45,15 @@ const Actions = {
             type: actionTypeHotel.SET_DATE_CHECK_OUT
         }
     },
+    setIsLoadingHotels: (status: boolean) => {
+        return {
+            type: actionTypeHotel.SET_IS_LOADING_HOTELS,
+            payload: status
+        }
+    },
+
     //AsyncActions
-    getHotels: () => async (dispatch: Dispatch, getState: any) => {
+    getHotels: () => async (dispatch: Dispatch, getState: () => RootState) => {
         const {locationRequest, checkIn, checkOut, totalDays} = getState().hotelReducer
         try {
             const dataRequest = {
@@ -53,11 +61,12 @@ const Actions = {
                 checkIn,
                 checkOut
             }
+            dispatch(Actions.setIsLoadingHotels(true))
             const response = await hostelApi.getHotels(dataRequest)
             const data = await response.data as hotelResponseDataTypes[]
             const locationResponse = data[0].location.name
 
-            dispatch(Actions.setHotels((data as any).map((hotel: any) => {
+            dispatch(Actions.setHotels((data).map((hotel: any) => {
                 return {
                     id: hotel.hotelId,
                     title: hotel.hotelName,
@@ -70,6 +79,8 @@ const Actions = {
             dispatch(Actions.setLocationResponse(locationResponse))
         } catch (err) {
             console.log('err', err)
+        } finally {
+            dispatch(Actions.setIsLoadingHotels(false))
         }
 
     }

@@ -10,6 +10,7 @@ const initialState: initialStateTypeHostel = {
     totalDays: 1,
     checkIn: moment().format('YYYY-MM-DD'),
     checkOut: moment().format('YYYY-MM-DD'),
+    isLoadingHotels: false
 }
 
 const hotelReducer = (state = initialState, { type, payload }: actionTypeHotel) => {
@@ -26,6 +27,10 @@ const hotelReducer = (state = initialState, { type, payload }: actionTypeHotel) 
         case actionTypeHotel.SET_HOTELS:
             return {
                 ...state, hotels: payload
+            }
+        case actionTypeHotel.SET_IS_LOADING_HOTELS:
+            return {
+                ...state, isLoadingHotels: payload
             }
         case actionTypeHotel.TOGGLE_FAVORITES_HOTEL:
             const isFavoriteHotel = state.favoriteHotels.some((hotel: hotelType) => hotel.id === payload)

@@ -8,6 +8,7 @@ export type initialStateTypeHostel = {
     totalDays: number,
     checkIn: string,
     checkOut: string,
+    isLoadingHotels: boolean
 }
 export const limitRequestHotel = 10
 export type actionTypeHotel = {type: string, payload: any}
@@ -42,5 +43,6 @@ export const actionTypeHotel = {
     TOGGLE_FAVORITES_HOTEL: 'HTL:TOGGLE_FAVORITES_HOTEL',
     SET_DATE_CHECK_IN: 'HTL:SET_DATE_CHECK_IN',
     SET_DATE_CHECK_OUT: 'HTL:SET_DATE_CHECK_OUT',
-    SET_TOTAL_DAYS: 'HTL:SET_TOTAL_DAYS'
+    SET_TOTAL_DAYS: 'HTL:SET_TOTAL_DAYS',
+    SET_IS_LOADING_HOTELS: 'HTL:SET_IS_LOADING_HOTELS',
 }

@@ -5,4 +5,6 @@ export type selectorTypesMainPage = {
     favoriteHotels: Array<hotelType>,
     locationRequest: string
     locationResponse: string
+    checkIn: string
+    isLoadingHotels: boolean
 }

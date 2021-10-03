@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import './MainPage.sass'
 
 import Head from "Components/Head/Head"
@@ -11,7 +11,9 @@ import {hotelType} from "../../Components/ListHotel/ListHotel.types";
 import declOfNumOnlyText from "../../helpers/declOfNumberOnlyText";
 import {selectorTypesMainPage} from "./MainPage.types";
 import BreadCrumbs from "../../Components/BreadCrumbs/BreadCrumbs";
-
+import moment from "moment";
+import 'moment/locale/ru';
+moment.locale('ru');
 
 
 const MainPage = () => {
@@ -20,12 +22,18 @@ const MainPage = () => {
         hotels,
         favoriteHotels,
         locationRequest,
-        locationResponse
+        locationResponse,
+        checkIn,
+        isLoadingHotels
     } : selectorTypesMainPage = useSelector(state => state.hotelReducer)
+    const [localCheckIn, setLocalCheckIn] = useState(checkIn)
 
     useEffect(() => {
         dispatch(hotelAction.getHotels())
     }, [])
+    useEffect(() => {
+        isLoadingHotels && setLocalCheckIn(checkIn)
+    }, [isLoadingHotels])
 
     const toggleFavoritesHotelHandler = (idHotel: number) => {
         dispatch(hotelAction.toggleFavoritesHotels(idHotel))
@@ -46,10 +54,14 @@ const MainPage = () => {
                     locationRequest={locationRequest}
                 />
                 <main className="layout__main main">
-                    <BreadCrumbs
-                        breadCrumbs={['Отели', locationResponse]}
-                        additionalClassNames={['main__breadcrumbs']}
-                    />
+                    <div className="main__wrapper">
+                        <BreadCrumbs
+                            breadCrumbs={['Отели', locationResponse]}
+                            additionalClassNames={['main__breadcrumbs']}
+                        />
+                        {/*07 июля 2020*/}
+                        <p className="main__paragraph">{moment(localCheckIn).format('DD MMMM YYYY')}</p>
+                    </div>
 
                     <h2 className="main__title">Добавлено в Избранное:&nbsp;
                         <b>{favoriteHotels.length}</b>&nbsp;
