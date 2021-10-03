@@ -17,7 +17,10 @@ const Aside = (props: propsTypeAside) => {
         favoriteHotels,
         toggleFavoritesHotelHandler,
         onSubmitForm,
-        locationRequest
+        locationRequest,
+        onClickSortPriceHandler,
+        onClickSortRatingHandler,
+        statusSortRating
     } = props
     const [valueInputLocation, setValueInputLocation] = React.useState(locationRequest)
     const [isDirtyInputLocation, setIsDirtyInputLocation] = React.useState(true)
@@ -121,6 +124,9 @@ const Aside = (props: propsTypeAside) => {
             <Favorites
                 favoriteHotels={favoriteHotels}
                 toggleFavoritesHotelHandler={toggleFavoritesHotelHandler}
+                onClickSortRatingHandler={onClickSortRatingHandler}
+                onClickSortPriceHandler={onClickSortPriceHandler}
+                statusSortRating={statusSortRating}
             />
         </aside>
     )

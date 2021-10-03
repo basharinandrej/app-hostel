@@ -26,7 +26,8 @@ const MainPage = () => {
         locationResponse,
         checkIn,
         isLoadingHotels,
-        sliderImages
+        sliderImages,
+        statusSortRating
     } : selectorTypesMainPage = useSelector(state => state.hotelReducer)
     const [localCheckIn, setLocalCheckIn] = useState(checkIn)
 
@@ -44,6 +45,14 @@ const MainPage = () => {
         e.preventDefault()
         dispatch(hotelAction.getHotels())
     }
+    const onClickSortPriceHandler = (e: React.MouseEvent) => {
+        console.log('PRICE', e);
+        //Клик первый раз сортируем вверх asc
+        //Клик второй раз сортируем вниз desc
+    }
+    const onClickSortRatingHandler = (e: React.MouseEvent) => {
+        dispatch(hotelAction.setSortHotelRating())
+    }
     return (
         <section className="body__layout layout">
             <Head />
@@ -54,6 +63,9 @@ const MainPage = () => {
                     toggleFavoritesHotelHandler={toggleFavoritesHotelHandler}
                     onSubmitForm={onSubmitFormHandler}
                     locationRequest={locationRequest}
+                    onClickSortPriceHandler={onClickSortPriceHandler}
+                    onClickSortRatingHandler={onClickSortRatingHandler}
+                    statusSortRating={statusSortRating}
                 />
                 <main className="layout__main main">
                     <div className="main__wrapper">

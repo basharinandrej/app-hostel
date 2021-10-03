@@ -8,4 +8,5 @@ export type selectorTypesMainPage = {
     checkIn: string
     isLoadingHotels: boolean
     sliderImages: string[]
+    statusSortRating: 'none' | 'asc' | 'desc'
 }

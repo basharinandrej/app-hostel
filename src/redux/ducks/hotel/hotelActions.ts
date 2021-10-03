@@ -51,7 +51,11 @@ const Actions = {
             payload: status
         }
     },
-
+    setSortHotelRating: () => {
+        return {
+            type: actionTypeHotel.SET_SORT_HOTEL_RATING
+        }
+    },
     //AsyncActions
     getHotels: () => async (dispatch: Dispatch, getState: () => RootState) => {
         const {locationRequest, checkIn, checkOut, totalDays} = getState().hotelReducer

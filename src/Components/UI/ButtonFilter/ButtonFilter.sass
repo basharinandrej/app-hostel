@@ -1,0 +1,39 @@
+.btn-filter
+  background: #FFF
+  border: 1px solid #E5E5E5
+  border-radius: 4px
+  display: flex
+  align-items: center
+
+  font-family: 'Roboto', sans-serif
+  font-style: normal
+  font-weight: normal
+  font-size: 14px
+  line-height: 20px
+  letter-spacing: -0.408px
+  color: #99A0A3
+  padding: 4px 8px
+  cursor: pointer
+
+  &--active
+    border: 1px solid #41522E
+    color: #41522E
+  &__text
+    margin-right: 4px
+
+  &__wrapper
+    display: flex
+    flex-direction: column
+
+  &__icon
+    display: flex
+    height: 4px
+    &--asc
+      margin-bottom: 4px
+    &--desc
+      transform: rotate(180deg)
+    svg
+      fill: rgba(65, 82, 46, 0.3)
+    &--active
+      svg
+        fill: #41522E

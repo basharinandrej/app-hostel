@@ -1,6 +1,7 @@
 import {actionTypeHotel, initialStateTypeHostel} from "./hotelTypes";
 import {hotelType} from "Components/ListHotel/ListHotel.types";
 import moment from 'moment'
+import _ from 'lodash'
 
 const initialState: initialStateTypeHostel = {
     hotels: [],
@@ -14,7 +15,8 @@ const initialState: initialStateTypeHostel = {
     sliderImages: [
         'sliderImg/1.png', 'sliderImg/2.png', 'sliderImg/3.png',
         'sliderImg/1.png', 'sliderImg/2.png', 'sliderImg/3.png'
-    ]
+    ],
+    statusSortRating: 'none'
 }
 
 const hotelReducer = (state = initialState, { type, payload }: actionTypeHotel) => {
@@ -63,6 +65,31 @@ const hotelReducer = (state = initialState, { type, payload }: actionTypeHotel) 
         case actionTypeHotel.SET_DATE_CHECK_OUT:
             return {
                 ...state, checkOut: moment(state.checkIn).add(state.totalDays, 'days').format('YYYY-MM-DD')
+            }
+        case actionTypeHotel.SET_SORT_HOTEL_RATING:
+            if (state.favoriteHotels.length < 2) return {...state}
+
+            if (state.statusSortRating === 'none') {
+                const hotelsSortedByAscRating = _.orderBy([...state.favoriteHotels], ['rating'], ['desc'])
+
+                return {
+                    ...state,
+                    statusSortRating: 'asc',
+                    favoriteHotels: hotelsSortedByAscRating
+                }
+            } else if (state.statusSortRating === 'asc'){
+                const hotelsSortedByDescRating = _.orderBy([...state.favoriteHotels], ['rating'], ['asc'])
+
+                return {
+                    ...state,
+                    statusSortRating: 'desc',
+                    favoriteHotels: hotelsSortedByDescRating
+                }
+            } else {
+                return {
+                    ...state,
+                    statusSortRating: 'none'
+                }
             }
         default:
             return state
