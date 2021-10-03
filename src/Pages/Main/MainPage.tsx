@@ -15,7 +15,11 @@ import {selectorTypesMainPage} from "./MainPage.types";
 
 const MainPage = () => {
     const dispatch = useDispatch()
-    const {hotels, favoriteHotels} : selectorTypesMainPage = useSelector(state => state.hotelReducer)
+    const {
+        hotels,
+        favoriteHotels,
+        location
+    } : selectorTypesMainPage = useSelector(state => state.hotelReducer)
 
     useEffect(() => {
         dispatch(hotelAction.getHotels())
@@ -37,6 +41,7 @@ const MainPage = () => {
                     favoriteHotels={favoriteHotels}
                     toggleFavoritesHotelHandler={toggleFavoritesHotelHandler}
                     onSubmitForm={onSubmitFormHandler}
+                    location={location}
                 />
                 <main className="layout__main main">
                     <h1 className="main__title"></h1>

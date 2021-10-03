@@ -17,18 +17,19 @@ const Aside = (props: propsTypeAside) => {
         favoriteHotels,
         toggleFavoritesHotelHandler,
         onSubmitForm,
+        location
     } = props
-    const [valueInputLocation, setValueInputLocation] = React.useState('')
-    const [isDirtyInputLocation, setIsDirtyInputLocation] = React.useState(false)
-    const [isValidInputLocation, setIsValidInputLocation] = React.useState(false)
+    const [valueInputLocation, setValueInputLocation] = React.useState(location)
+    const [isDirtyInputLocation, setIsDirtyInputLocation] = React.useState(true)
+    const [isValidInputLocation, setIsValidInputLocation] = React.useState(true)
 
     const [valueInputTotalDay, setValueInputTotalDay] = React.useState('')
     const [isDirtyInputTotalDay, setIsDirtyInputTotalDay] = React.useState(false)
     const [isValidInputTotalDay, setIsValidInputTotalDay] = React.useState(false)
 
     const [valueInputCheckInDay, setValueInputCheckInDay] = React.useState(moment().format('YYYY-MM-DD'))
-    const [isDirtyInputCheckInDay, setIsDirtyInputCheckInDay] = React.useState(false)
-    const [isValidInputCheckInDay, setIsValidInputCheckInDay] = React.useState(false)
+    const [isDirtyInputCheckInDay, setIsDirtyInputCheckInDay] = React.useState(true)
+    const [isValidInputCheckInDay, setIsValidInputCheckInDay] = React.useState(true)
 
 
     const onChangeLocationHandler = (e: React.ChangeEvent) => {
@@ -67,7 +68,8 @@ const Aside = (props: propsTypeAside) => {
 
     const isValidForm = (): boolean => {
         return !!valueInputLocation && isDirtyInputLocation && isValidInputLocation &&
-            !!valueInputTotalDay && isDirtyInputTotalDay && isValidInputTotalDay
+            !!valueInputTotalDay && isDirtyInputTotalDay && isValidInputTotalDay &&
+            !!valueInputCheckInDay && isDirtyInputCheckInDay && isValidInputCheckInDay
     }
 
     return (
