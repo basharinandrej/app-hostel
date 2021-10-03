@@ -1,5 +1,5 @@
 import React from "react";
-import {loginRegExp} from "Components/UI/Input/Input.functions";
+import {loginRegExp, passwordRegExp} from "Components/UI/Input/Input.functions";
 import Form from "Components/Form/Form";
 import Input from "Components/UI/Input/Input";
 import Button from "Components/UI/Button/Button";
@@ -16,6 +16,7 @@ const AuthPage = () => {
 
     const [valueInputPassword, setValueInputPassword] = React.useState('')
     const [isDirtyInputPassword, setIsDirtyInputPassword] = React.useState(false)
+    const [isValidInputPassword, setIsValidInputPassword] = React.useState(false)
 
     React.useEffect(() => {
         dispatch(authActions.setAuth(!!localStorage.getItem('authAppHotel')))
@@ -26,17 +27,18 @@ const AuthPage = () => {
         setIsDirtyInputLogin(true)
 
         setValueInputLogin(value)
-        setIsValidInputLogin(loginRegExp.test(value));
+        setIsValidInputLogin(loginRegExp.test(value))
     }
     const onChangePasswordHandler = (e: React.ChangeEvent) => {
         const value = (e.target as HTMLInputElement).value
         setIsDirtyInputPassword(true)
 
         setValueInputPassword(value)
+        setIsValidInputPassword(!passwordRegExp.test(value))
     }
     const isValidForm = (): boolean => {
         return !!valueInputLogin && isDirtyInputLogin && isValidInputLogin &&
-            !!valueInputPassword && isDirtyInputPassword && valueInputPassword.length >= minLengthPassword
+            !!valueInputPassword && isDirtyInputPassword && valueInputPassword.length >= minLengthPassword && isValidInputPassword
     }
     const onSubmitHandler = (e: React.FormEvent) => {
         const dataAuth = {
@@ -67,9 +69,11 @@ const AuthPage = () => {
                 <Input
                     legend="Пароль"
                     type="password"
+                    errorMessage="не используйте кириллицу"
                     isRequired={true}
                     value={valueInputPassword}
                     isDirty={isDirtyInputPassword}
+                    isValid={isValidInputPassword}
                     onChange={onChangePasswordHandler}
                     minLength={minLengthPassword}
                     additionalClassNames={['main-form__input--gap']}

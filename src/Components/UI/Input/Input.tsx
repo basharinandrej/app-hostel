@@ -49,7 +49,12 @@ const Input = (props: propsTypeInput) => {
                 min={min}
             />
             {(isError && !isPassword) && <span className="input__error-message">{errorMessage || 'Заполните поле'}</span>}
-            {(isError && isPassword) && <span className="input__error-message">Минимальная длинна пароля 8 символов, сейчас {value.length}</span>}
+            {(isError && isPassword) && <span className="input__error-message">
+                Минимальная длинна пароля 8 символов, сейчас {value.length}
+            </span>}
+            {(isDirty && !isValid && isPassword) && <span className="input__error-message">
+                {errorMessage}
+            </span>}
         </label>
     )
 }
