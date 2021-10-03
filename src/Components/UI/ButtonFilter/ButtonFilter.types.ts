@@ -4,5 +4,5 @@ export type propsTypeButtonFilter = {
     text: string
     additionalClassNames?: string[]
     onClick: (e: React.MouseEvent) => void
-    statusSortRating?: 'none' | 'asc' | 'desc'
+    statusSort: 'none' | 'asc' | 'desc'
 }

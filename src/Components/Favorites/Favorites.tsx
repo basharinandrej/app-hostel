@@ -10,7 +10,8 @@ const Favorites = (props: propsTypeFavorites) => {
         toggleFavoritesHotelHandler,
         onClickSortRatingHandler,
         onClickSortPriceHandler,
-        statusSortRating
+        statusSortRating,
+        statusSortPrice
     } = props
 
     return (
@@ -22,12 +23,13 @@ const Favorites = (props: propsTypeFavorites) => {
                     text="Рейтинг"
                     additionalClassNames={['favorites__btn-filter']}
                     onClick={onClickSortRatingHandler}
-                    statusSortRating={statusSortRating}
+                    statusSort={statusSortRating}
                 />
                 <ButtonFilter
                     text="Цена"
                     additionalClassNames={['favorites__btn-filter']}
                     onClick={onClickSortPriceHandler}
+                    statusSort={statusSortPrice}
                 />
             </div>
 

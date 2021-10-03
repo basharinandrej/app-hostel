@@ -16,7 +16,8 @@ const initialState: initialStateTypeHostel = {
         'sliderImg/1.png', 'sliderImg/2.png', 'sliderImg/3.png',
         'sliderImg/1.png', 'sliderImg/2.png', 'sliderImg/3.png'
     ],
-    statusSortRating: 'none'
+    statusSortRating: 'none',
+    statusSortPrice: 'none'
 }
 
 const hotelReducer = (state = initialState, { type, payload }: actionTypeHotel) => {
@@ -66,7 +67,7 @@ const hotelReducer = (state = initialState, { type, payload }: actionTypeHotel) 
             return {
                 ...state, checkOut: moment(state.checkIn).add(state.totalDays, 'days').format('YYYY-MM-DD')
             }
-        case actionTypeHotel.SET_SORT_HOTEL_RATING:
+        case actionTypeHotel.SET_SORT_HOTEL_BY_RATING:
             if (state.favoriteHotels.length < 2) return {...state}
 
             if (state.statusSortRating === 'none') {
@@ -75,6 +76,7 @@ const hotelReducer = (state = initialState, { type, payload }: actionTypeHotel) 
                 return {
                     ...state,
                     statusSortRating: 'asc',
+                    statusSortPrice: 'none',
                     favoriteHotels: hotelsSortedByAscRating
                 }
             } else if (state.statusSortRating === 'asc'){
@@ -83,12 +85,40 @@ const hotelReducer = (state = initialState, { type, payload }: actionTypeHotel) 
                 return {
                     ...state,
                     statusSortRating: 'desc',
+                    statusSortPrice: 'none',
                     favoriteHotels: hotelsSortedByDescRating
                 }
             } else {
                 return {
                     ...state,
                     statusSortRating: 'none'
+                }
+            }
+        case actionTypeHotel.SET_SORT_HOTEL_BY_PRICE:
+            if (state.favoriteHotels.length < 2) return {...state}
+
+            if (state.statusSortPrice === 'none') {
+                const hotelsSortedByDescPrice = _.orderBy([...state.favoriteHotels], ['price'], ['desc'])
+
+                return {
+                    ...state,
+                    statusSortPrice: 'asc',
+                    statusSortRating: 'none',
+                    favoriteHotels: hotelsSortedByDescPrice
+                }
+            } else if (state.statusSortPrice === 'asc'){
+                const hotelsSortedByDescPrice = _.orderBy([...state.favoriteHotels], ['price'], ['asc'])
+
+                return {
+                    ...state,
+                    statusSortPrice: 'desc',
+                    statusSortRating: 'none',
+                    favoriteHotels: hotelsSortedByDescPrice
+                }
+            } else {
+                return {
+                    ...state,
+                    statusSortPrice: 'none'
                 }
             }
         default:

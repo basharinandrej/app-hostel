@@ -9,4 +9,5 @@ export type propsTypeAside = {
     onClickSortPriceHandler: (e: React.MouseEvent) => void
     locationRequest: string
     statusSortRating: 'none' | 'asc' | 'desc'
+    statusSortPrice: 'none' | 'asc' | 'desc'
 }

@@ -11,6 +11,7 @@ export type initialStateTypeHostel = {
     isLoadingHotels: boolean
     sliderImages: string[],
     statusSortRating: 'none' | 'asc' | 'desc'
+    statusSortPrice: 'none' | 'asc' | 'desc'
 }
 export const limitRequestHotel = 10
 export type actionTypeHotel = {type: string, payload: any}
@@ -47,5 +48,7 @@ export const actionTypeHotel = {
     SET_DATE_CHECK_OUT: 'HTL:SET_DATE_CHECK_OUT',
     SET_TOTAL_DAYS: 'HTL:SET_TOTAL_DAYS',
     SET_IS_LOADING_HOTELS: 'HTL:SET_IS_LOADING_HOTELS',
-    SET_SORT_HOTEL_RATING: 'HTL:SET_SORT_HOTEL_RATING',
+    SET_SORT_HOTEL_BY_RATING: 'HTL:SET_SORT_HOTEL_BY_RATING',
+    SET_SORT_HOTEL_BY_PRICE: 'HTL:SET_SORT_HOTEL_BY_PRICE',
+
 }

@@ -51,9 +51,14 @@ const Actions = {
             payload: status
         }
     },
-    setSortHotelRating: () => {
+    setSortHotelByRating: () => {
         return {
-            type: actionTypeHotel.SET_SORT_HOTEL_RATING
+            type: actionTypeHotel.SET_SORT_HOTEL_BY_RATING
+        }
+    },
+    setSortHotelByPrice: () => {
+        return {
+            type: actionTypeHotel.SET_SORT_HOTEL_BY_PRICE
         }
     },
     //AsyncActions

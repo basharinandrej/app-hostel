@@ -20,7 +20,8 @@ const Aside = (props: propsTypeAside) => {
         locationRequest,
         onClickSortPriceHandler,
         onClickSortRatingHandler,
-        statusSortRating
+        statusSortRating,
+        statusSortPrice
     } = props
     const [valueInputLocation, setValueInputLocation] = React.useState(locationRequest)
     const [isDirtyInputLocation, setIsDirtyInputLocation] = React.useState(true)
@@ -127,6 +128,7 @@ const Aside = (props: propsTypeAside) => {
                 onClickSortRatingHandler={onClickSortRatingHandler}
                 onClickSortPriceHandler={onClickSortPriceHandler}
                 statusSortRating={statusSortRating}
+                statusSortPrice={statusSortPrice}
             />
         </aside>
     )

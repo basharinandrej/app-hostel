@@ -7,4 +7,5 @@ export type propsTypeFavorites = {
     onClickSortRatingHandler: (e: React.MouseEvent) => void
     onClickSortPriceHandler: (e: React.MouseEvent) => void
     statusSortRating: 'none' | 'asc' | 'desc'
+    statusSortPrice: 'none' | 'asc' | 'desc'
 }

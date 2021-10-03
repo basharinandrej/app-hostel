@@ -9,4 +9,5 @@ export type selectorTypesMainPage = {
     isLoadingHotels: boolean
     sliderImages: string[]
     statusSortRating: 'none' | 'asc' | 'desc'
+    statusSortPrice: 'none' | 'asc' | 'desc'
 }
