@@ -10,6 +10,7 @@ import { useSelector } from "redux/commonTypes";
 import {hotelType} from "../../Components/ListHotel/ListHotel.types";
 import declOfNumOnlyText from "../../helpers/declOfNumberOnlyText";
 import {selectorTypesMainPage} from "./MainPage.types";
+import BreadCrumbs from "../../Components/BreadCrumbs/BreadCrumbs";
 
 
 
@@ -18,7 +19,8 @@ const MainPage = () => {
     const {
         hotels,
         favoriteHotels,
-        location
+        locationRequest,
+        locationResponse
     } : selectorTypesMainPage = useSelector(state => state.hotelReducer)
 
     useEffect(() => {
@@ -41,11 +43,13 @@ const MainPage = () => {
                     favoriteHotels={favoriteHotels}
                     toggleFavoritesHotelHandler={toggleFavoritesHotelHandler}
                     onSubmitForm={onSubmitFormHandler}
-                    location={location}
+                    locationRequest={locationRequest}
                 />
                 <main className="layout__main main">
-                    <h1 className="main__title"></h1>
-
+                    <BreadCrumbs
+                        breadCrumbs={['Отели', locationResponse]}
+                        additionalClassNames={['main__breadcrumbs']}
+                    />
 
                     <h2 className="main__title">Добавлено в Избранное:&nbsp;
                         <b>{favoriteHotels.length}</b>&nbsp;

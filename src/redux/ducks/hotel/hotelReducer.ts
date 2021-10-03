@@ -5,7 +5,8 @@ import moment from 'moment'
 const initialState: initialStateTypeHostel = {
     hotels: [],
     favoriteHotels: [],
-    location: 'Moscow',
+    locationRequest: 'Moscow',
+    locationResponse: 'Moscow',
     totalDays: 1,
     checkIn: moment().format('YYYY-MM-DD'),
     checkOut: moment().format('YYYY-MM-DD'),
@@ -14,9 +15,13 @@ const initialState: initialStateTypeHostel = {
 const hotelReducer = (state = initialState, { type, payload }: actionTypeHotel) => {
 
     switch (type) {
-        case actionTypeHotel.SET_LOCATION:
+        case actionTypeHotel.SET_LOCATION_REQUEST:
             return {
-                ...state, location: payload
+                ...state, locationRequest: payload
+            }
+        case actionTypeHotel.SET_LOCATION_RESPONSE:
+            return {
+                ...state, locationResponse: payload
             }
         case actionTypeHotel.SET_HOTELS:
             return {

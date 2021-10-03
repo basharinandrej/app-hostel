@@ -17,9 +17,9 @@ const Aside = (props: propsTypeAside) => {
         favoriteHotels,
         toggleFavoritesHotelHandler,
         onSubmitForm,
-        location
+        locationRequest
     } = props
-    const [valueInputLocation, setValueInputLocation] = React.useState(location)
+    const [valueInputLocation, setValueInputLocation] = React.useState(locationRequest)
     const [isDirtyInputLocation, setIsDirtyInputLocation] = React.useState(true)
     const [isValidInputLocation, setIsValidInputLocation] = React.useState(true)
 
@@ -36,7 +36,7 @@ const Aside = (props: propsTypeAside) => {
         const value = (e.target as HTMLInputElement).value
         setIsDirtyInputLocation(true)
         setValueInputLocation(value)
-        dispatch(hotelAction.setLocation(value))
+        dispatch(hotelAction.setLocationRequest(value))
         if (value) {
             setIsValidInputLocation(true)
         } else {

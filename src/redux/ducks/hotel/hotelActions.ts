@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import hostelApi from "./hotelApi";
-import {actionTypeHotel} from "./hotelTypes";
+import {actionTypeHotel, hotelResponseDataTypes} from "./hotelTypes";
 
 const Actions = {
     setHotels: (hostels: {title: string, id: number}[]) => {
@@ -9,10 +9,16 @@ const Actions = {
             payload: hostels
         }
     },
-    setLocation: (location: string) => {
+    setLocationRequest: (locationRequest: string) => {
         return {
-            type: actionTypeHotel.SET_LOCATION,
-            payload: location
+            type: actionTypeHotel.SET_LOCATION_REQUEST,
+            payload: locationRequest
+        }
+    },
+    setLocationResponse: (locationResponse: string) => {
+        return {
+            type: actionTypeHotel.SET_LOCATION_RESPONSE,
+            payload: locationResponse
         }
     },
     toggleFavoritesHotels: (idHotel: number) => {
@@ -40,15 +46,16 @@ const Actions = {
     },
     //AsyncActions
     getHotels: () => async (dispatch: Dispatch, getState: any) => {
-        const {location, checkIn, checkOut, totalDays} = getState().hotelReducer
+        const {locationRequest, checkIn, checkOut, totalDays} = getState().hotelReducer
         try {
             const dataRequest = {
-                location,
+                locationRequest,
                 checkIn,
                 checkOut
             }
             const response = await hostelApi.getHotels(dataRequest)
-            const data = await response.data
+            const data = await response.data as hotelResponseDataTypes[]
+            const locationResponse = data[0].location.name
 
             dispatch(Actions.setHotels((data as any).map((hotel: any) => {
                 return {
@@ -60,6 +67,7 @@ const Actions = {
                     checkIn: checkIn
                 }
             })))
+            dispatch(Actions.setLocationResponse(locationResponse))
         } catch (err) {
             console.log('err', err)
         }

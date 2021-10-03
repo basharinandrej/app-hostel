@@ -4,8 +4,8 @@ import {dataRequestHotel, limitRequestHotel} from "./hotelTypes";
 
 export default {
     getHotels: (dataRequest:dataRequestHotel ) => {
-        const {location, checkIn, checkOut} = dataRequest
+        const {locationRequest, checkIn, checkOut} = dataRequest
 
-        return axios.get(`${baseUrl}?location=${location}&currency=rub&checkIn=${checkIn}&checkOut=${checkOut}&limit=${limitRequestHotel}`);
+        return axios.get(`${baseUrl}?location=${locationRequest}&currency=rub&checkIn=${checkIn}&checkOut=${checkOut}&limit=${limitRequestHotel}`);
     }
 }
