@@ -2,6 +2,9 @@ import {actionTypeHotel, initialStateTypeHostel} from "./hotelTypes";
 import {hotelType} from "Components/ListHotel/ListHotel.types";
 import moment from 'moment'
 import _ from 'lodash'
+import img1 from 'images/sliderImg/1.png'
+import img2 from 'images/sliderImg/2.png'
+import img3 from 'images/sliderImg/3.png'
 
 const initialState: initialStateTypeHostel = {
     hotels: [],
@@ -13,8 +16,7 @@ const initialState: initialStateTypeHostel = {
     checkOut: moment().format('YYYY-MM-DD'),
     isLoadingHotels: false,
     sliderImages: [
-        'sliderImg/1.png', 'sliderImg/2.png', 'sliderImg/3.png',
-        'sliderImg/1.png', 'sliderImg/2.png', 'sliderImg/3.png'
+        img1, img2, img3, img1, img2, img3
     ],
     statusSortRating: 'none',
     statusSortPrice: 'none'

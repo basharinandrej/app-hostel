@@ -20,7 +20,7 @@ const MainSlider = (props: {slides: string[] }) => {
                 {props.slides.map(((imgName: string, idx: number) => {
                     return (
                         <div key={idx} className="main-slider__slide">
-                            <img src={require(`images/${imgName}`).default} alt="slide-img"/>
+                            <img src={imgName} alt="slide-img"/>
                         </div>
                     )
                 }))}
